@@ -21,16 +21,5 @@
 % pele azul, frequência cardíaca alta).
 %
 
-rinite_cronica(['espirro', 'tosse seca', 'coriza', 'nariz entupido', 'dor de cabeca',  'coceira']).
-asma(['falta de ar', 'dificuldade respirar', 'tosse sem catarro', 'chiado peito', 'fadiga']).
-dpoc(['tosse +3 meses', 'catarro', 'falta ar']).
-sinusite_cronica(['dores rosto', 'olhos sensiveis', 'nariz entupido', 'tosse', 'mau halito', 'dor de garganta']).
-tuberculose(['tosse +3 semanas', 'tosse com sangue', 'dor respirar', 'febre', 'suor noturno', 'perda peso', 'falta ar']).
-gripe(['tosse', 'dor de cabeca', 'febre', 'coriza']).
-faringite(['dor engolir', 'garganta arranhada', 'febre']).
-pneumonia(['febre alta', 'dor respirar', 'tosse com catarro', 'calafrios', 'falta ar']).
-bronquite_aguda(['coriza', 'tosse', 'fadiga', 'chiado peito', 'dor costas', 'febre']).
-sdra(['falta ar', 'respiracao rapida', 'chiado peito', 'pele azul', 'batimentos rapidos']).
-
-
+rinite_cronica['espirro', 'tosse_seca', 'coriza', 'nariz entupido'].
 
