@@ -17,20 +17,56 @@
 % e falta de ar);
 % Bronquite aguda (coriza, tosse, cansaço, chiado no peito, dores nas
 % costas, febre);
-% SDRA (falta de ar, respiração rapida e superficial, chiado no pulmão,
-% pele azul, frequência cardíaca alta).
-%
+% gripe_aviaria(tosse, febre, garganta inflamada, dor muscular, dor
+% cabeça, falta de ar).
+% gripe_suina(febre, dor de cabeça, dores musculares, dor nas
+% articulaçoes, tosse, irritaçao nos olhos, fluxo.
 
-rinite_cronica(['espirro', 'tosse seca', 'coriza', 'nariz entupido', 'dor de cabeca',  'coceira']).
-asma(['falta de ar', 'dificuldade respirar', 'tosse sem catarro', 'chiado peito', 'fadiga']).
-dpoc(['tosse +3 meses', 'catarro', 'falta ar']).
-sinusite_cronica(['dores rosto', 'olhos sensiveis', 'nariz entupido', 'tosse', 'mau halito', 'dor de garganta']).
-tuberculose(['tosse +3 semanas', 'tosse com sangue', 'dor respirar', 'febre', 'suor noturno', 'perda peso', 'falta ar']).
-gripe(['tosse', 'dor de cabeca', 'febre', 'coriza']).
-faringite(['dor engolir', 'garganta arranhada', 'febre']).
-pneumonia(['febre alta', 'dor respirar', 'tosse com catarro', 'calafrios', 'falta ar']).
-bronquite_aguda(['coriza', 'tosse', 'fadiga', 'chiado peito', 'dor costas', 'febre']).
-sdra(['falta ar', 'respiracao rapida', 'chiado peito', 'pele azul', 'batimentos rapidos']).
+espirro([RiniteCronica]).
+
+tosse([RiniteCronica, Asma, Dpoc, SinusiteCronica, Tuberculose, Gripe, Pneumonia, BronquiteAguda, GripeAviaria, GripeSuina]).
+
+coriza([RiniteCronica, Gripe, BronquiteAguda, GripeSuina]).
+
+nariz_congestionado([RiniteCronica, SinusiteCronica]).
+
+dor_cabeca([RiniteCronica, Gripe, GripeAviaria, GripeSuina]).
+
+coceira([RiniteCronica]).
+
+falta_ar([Asma, Dpoc, Tuberculose, Pneumonia, GripeAviaria]).
+
+chiado_peito([Asma, BronquiteAguda]).
+
+fadiga([Asma, BronquiteAguda]).
+
+catarro([Dpoc, Pneumonia]).
+
+dor_rosto([SinusiteCronica]).
+
+olhos_sensiveis([SinusiteCronica, GripeSuina]).
+
+mau_halito([SinusiteCronica]).
+
+dor_garganta([SinusiteCronica, Faringite, GripeAviaria]).
+
+dor_respirar([Tuberculose, Pneumonia]).
+
+dor_costas([BronquiteAguda]).
+
+dor_muscular([GripeAviaria, GripeSuina]).
+
+dor_articulacao([GripeSuina]).
+
+febre([Tuberculose, Gripe, Faringite, Pneumonia, BronquiteAguda, GripeAviaria, GripeSuina]).
+
+suor_noturno([Tuberculose]).
+
+perda_peso([Tuberculose]).
+
+
+
+
 
 
 

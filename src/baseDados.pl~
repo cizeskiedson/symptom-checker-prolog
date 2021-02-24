@@ -17,9 +17,54 @@
 % e falta de ar);
 % Bronquite aguda (coriza, tosse, cansaço, chiado no peito, dores nas
 % costas, febre);
-% SDRA (falta de ar, respiração rapida e superficial, chiado no pulmão,
-% pele azul, frequência cardíaca alta).
-%
+% gripe_aviaria(tosse, febre, garganta inflamada, dor muscular, dor
+% cabeça, falta de ar).
+% gripe_suina(febre, dor de cabeça, dores musculares, dor nas
+% articulaçoes, tosse, irritaçao nos olhos, fluxo.
 
-rinite_cronica['espirro', 'tosse_seca', 'coriza', 'nariz entupido'].
+espirro([RiniteCronica]).
+
+tosse([RiniteCronica, Asma, Dpoc, SinusiteCronica, Tuberculose, Gripe, Pneumonia, BronquiteAguda, GripeAviaria, GripeSuina]).
+
+coriza([RiniteCronica, Gripe, BronquiteAguda, GripeSuina]).
+
+nariz_congestionado([RiniteCronica, SinusiteCronica]).
+
+dor_cabeca([RiniteCronica, Gripe, GripeAviaria, GripeSuina]).
+
+coceira([RiniteCronica]).
+
+falta_ar([Asma, Dpoc, Tuberculose, Pneumonia, GripeAviaria]).
+
+chiado_peito([Asma, BronquiteAguda]).
+
+fadiga([Asma, BronquiteAguda]).
+
+catarro([Dpoc, Pneumonia]).
+
+dor_rosto([SinusiteCronica]).
+
+olhos_sensiveis([SinusiteCronica, GripeSuina]).
+
+mau_halito([SinusiteCronica]).
+
+dor_garganta([SinusiteCronica, Faringite, GripeAviaria]).
+
+dor_respirar([Tuberculose, Pneumonia]).
+
+dor_costas([BronquiteAguda]).
+
+dor_muscular([GripeAviaria, GripeSuina]).
+
+dor_articulacao([GripeSuina]).
+
+febre([Tuberculose, Gripe, Faringite, Pneumonia, BronquiteAguda, GripeAviaria, GripeSuina]).
+
+suor_noturno([Tuberculose]).
+
+perda_peso([Tuberculose]).
+
+
+
+
 
