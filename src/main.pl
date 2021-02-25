@@ -20,7 +20,7 @@ iniciar :-
     writeln("Como ja mencionado, esse teste nao e um diagnostico, mas sim apenas uma verificaçao de sintomas."),
     writeln("Para cada pergunta responda de acordo com as instruções dadas."),
     nl,
-    questionario(),
+    questionario(D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11),
     !.
 
 

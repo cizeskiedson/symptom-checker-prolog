@@ -1,0 +1,15 @@
+:-use_module(library(plunit)).
+
+switch(X, [
+           a : writeln(),
+           b : writeln(),
+           c : writeln()
+       ])
+
+switch( X, [Val:Goal|Cases]) :-
+    (   X=Val -> call(Goal);
+
+    switch(X, Cases)
+    ).
+
+
