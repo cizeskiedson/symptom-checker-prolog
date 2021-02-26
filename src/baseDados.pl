@@ -69,22 +69,23 @@ perda_peso([Tuberculose]).
 questionario(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Faringite, Pneumonia, Bronquite, Aviaria, Suina) :-
     write_ln('Agora vamos iniciar um questionário de quinze perguntas, que irão nos auxiliar a entender o que está sentindo.'),
     write_ln('Por favor, tente prestar bem atenção na pergunta, e responder apenas com o que tiver certeza que está correto.'),
-    teste1(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina),
-    teste2(),
-    teste3(),
+    teste0(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina),
+    teste1(Bronquite, Aviaria, Suina),
+    teste2(Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina),
     write_ln('A partir desse ponto, o questionário terá apenas perguntas de sim ou não. Caso a descrição fornecida seja claramente correspondente ao que está sentindo, digite 1. Em caso contrário, ou seja, a descrição não remete ao que está passando, digite 0.'),
-    teste4(),
-    teste5(),
-    teste6(),
-    teste7(),
-    teste8(),
-    teste9(),
-    teste10(),
-    teste11(),
-    teste12(),
-    teste13(),
-    teste14(),
-    teste15().
+    teste3(Rinite),
+    teste4(Rinite, Gripe, Bronquite, Suina),
+    teste5(Rinite, Sinusite),
+    teste6(Asma, Dpoc, Tuberculose, Pneumonia, Aviaria),
+    teste7(Asma, Bronquite),
+    teste8(Asma, Bronquite),
+    teste9(Tuberculose, Gripe, Faringite, Bronquite, Aviaria, Suina),
+    teste10(Sinusite, Suina),
+    teste11(Tuberculose, Pneumonia),
+    teste12(Tuberculose),
+    teste13(Tuberculose),
+    teste14(Rinite),
+    teste15(Sinusite).
 
 
 

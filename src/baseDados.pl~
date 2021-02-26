@@ -66,7 +66,25 @@ perda_peso([Tuberculose]).
 
 
 
-
+questionario(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Faringite, Pneumonia, Bronquite, Aviaria, Suina) :-
+    write_ln('Agora vamos iniciar um questionário de quinze perguntas, que irão nos auxiliar a entender o que está sentindo.'),
+    write_ln('Por favor, tente prestar bem atenção na pergunta, e responder apenas com o que tiver certeza que está correto.'),
+    teste1(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina),
+    teste2(),
+    teste3(),
+    write_ln('A partir desse ponto, o questionário terá apenas perguntas de sim ou não. Caso a descrição fornecida seja claramente correspondente ao que está sentindo, digite 1. Em caso contrário, ou seja, a descrição não remete ao que está passando, digite 0.'),
+    teste4(),
+    teste5(),
+    teste6(),
+    teste7(),
+    teste8(),
+    teste9(),
+    teste10(),
+    teste11(),
+    teste12(),
+    teste13(),
+    teste14(),
+    teste15().
 
 
 
