@@ -45,7 +45,7 @@ mostraDoencasPossiveis(ResRinite, ResAsma, ResDpoc, ResSinusite, ResTuberculose,
     write('teste').
 
 
-MostraTodasDoencas :-
+mostraTodasDoencas :-
     write('teste').
 
 

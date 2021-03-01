@@ -1,128 +1,8 @@
 %Arquivo com todas as perguntas para avaliar os sintomas do usuario.
 %
 %
+%%
 %
-%
-
-soma(X, Y, Z) :-
-    X = Y + Z.
-
-if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
-       X == 1,
-       write_ln("teste1"),
-       Rinite is R + 1,
-       Sinusite is GS +1,
-       Gripe is G + 1,
-       Aviaria is GA + 1,
-       Suina is S + 1,
-       Asma is A,
-       Dpoc is D,
-       Pneumonia is P,
-       Bronquite is B,
-       Tuberculose is T.
-
-if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
-      X == 2,
-      write_ln("teste2"),
-      Asma is A + 1,
-      Dpoc is D + 1,
-      Pneumonia is P + 1,
-      Bronquite is B + 1,
-      Rinite is R,
-      Asma is A,
-      Sinusite is S,
-      Tuberculose is T,
-      Gripe is G,
-      Aviaria is GA,
-      Suina is GS.
-
-if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
-      X == 3,
-      write_ln("teste3"),
-      Tuberculose is T + 1,
-      Rinite is R,
-      Asma is A,
-      Dpoc is D,
-      Sinusite is S,
-      Gripe is G,
-      Pneumonia is P,
-      Bronquite is B,
-      Aviaria is GA,
-      Suina is GS.
-
-if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
-    X==1,
-    Aviaria is GA + 1, Suina is GS + 1, Bronquite is B.
-
-if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
-    X==2,
-     X==2 -> Suina is GS + 1, Aviaria is GA, Bronquite is B.
-
-
-if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
-    X==3,
-     Suina is GS + 2, Aviaria is GA, Bronquite is B.
-
-if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
-    X==4,
-    Bronquite is B + 1, Aviaria is GA, Suina is GS.
-
-if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
-    X==1,
-    Sinusite is S + 1,
-         Rinite is R,
-         Gripe is G,
-         Faringite is F,
-         Aviaria is GA,
-         Suina is GS.
-if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
-    X==2,
-    Rinite is R + 1,
-         Gripe is G + 1,
-         Aviaria is GA + 1,
-         Suina is GS + 1,
-         Faringite is F,
-         Sinusite is S.
-
-if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
-    X==3,
-    Sinusite is S + 1,
-         Faringite is F + 1,
-         Aviaria is GA + 1,
-         Suina is GS,
-         Rinite is R,
-         Sinusite is S,
-         Gripe is G.
-
-if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
-    X==4,
-    Sinusite is S + 2,
-          Rinite is R,
-         Gripe is G,
-         Faringite is F,
-         Aviaria is GA,
-         Suina is GS.
-
-if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
-    X==5,
-     Faringite is F + 1,
-         Rinite is R,
-         Gripe is G,
-         Sinusite is S,
-         Aviaria is GA,
-         Suina is GS.
-
-
-if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
-    X==6,
-    Aviaria is GA + 2,
-         Rinite is R,
-         Gripe is G,
-         Sinusite is S,
-         Faringite is F,
-         Suina is GS.
-
-
 
 teste0(R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
     write_ln('Sobre tosses, responda digitando o número da opção que melhor descreve o que está sentindo.'),
@@ -159,25 +39,18 @@ teste2(R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina) :
 teste3(R, Rinite) :-
     write_ln('Você está espirrando frequentemente?'),
     read(user_input, X),
-    (   X==1 -> Rinite is R + 1
-    ).
+    if3(X, R, Rinite).
 
 teste4(R, G, B, S, Rinite, Gripe, Bronquite, Suina) :-
     write_ln('Seu nariz apresenta coriza (nariz escorrendo)? '),
     read(user_input, X),
-    (   X==1 -> Rinite is R + 1,
-        Gripe is G + 1,
-        Bronquite is B + 1,
-        Suina is S + 1).
+    if4(X, R, G, B, S, Rinite, Gripe, Bronquite, Suina).
 
 
 teste5(R, S, Rinite, Sinusite) :-
     write_ln('Seu nariz está congestionado?'),
     read(user_input, X),
-    (   X==1 -> Rinite is R + 1,
-        Sinusite is S + 1
-    ).
-
+    if5(X, R, S, Rinite, Sinusite).
 
 teste6(A, D, T, P, GA, Asma, Dpoc, Tuberculose, Pneumonia, Aviaria) :-
     write_ln('Você está sentindo falta de ar ao respirar?'),
@@ -259,6 +132,192 @@ teste15(S, Sinusite) :-
     write_ln('Você está com mau hálito bucal?'),
     read(user_input, X),
     (   X==1 -> Sinusite is S + 1).
+
+
+if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
+    Rinite is R, Asma is A, Dpoc is D, Sinusite is S, Tuberculose is T, Gripe is G, Pneumonia is P, Bronquite is B, Aviaria is GA, Suina is GS.
+
+
+if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
+       X == 1,
+       write_ln("teste1"),
+       Rinite is R + 1,
+       Sinusite is GS +1,
+       Gripe is G + 1,
+       Aviaria is GA + 1,
+       Suina is S + 1,
+       Asma is A,
+       Dpoc is D,
+       Pneumonia is P,
+       Bronquite is B,
+       Tuberculose is T.
+
+if0(X,R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
+      X == 2,
+      write_ln("teste2"),
+      Asma is A + 1,
+      Dpoc is D + 1,
+      Pneumonia is P + 1,
+      Bronquite is B + 1,
+      Rinite is R,
+      Sinusite is S,
+      Tuberculose is T,
+      Gripe is G,
+      Aviaria is GA,
+      Suina is GS.
+
+if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
+      X == 3,
+      write_ln("teste3"),
+      Tuberculose is T + 1,
+      Rinite is R,
+      Asma is A,
+      Dpoc is D,
+      Sinusite is S,
+      Gripe is G,
+      Pneumonia is P,
+      Bronquite is B,
+      Aviaria is GA,
+      Suina is GS.
+
+
+
+if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
+    X==0,
+    Aviaria is GA, Suina is GS, Bronquite is B.
+
+
+
+if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
+    X==1,
+    Aviaria is GA + 1, Suina is GS + 1, Bronquite is B.
+
+if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
+    X==2,
+      Suina is GS + 1, Aviaria is GA, Bronquite is B.
+
+
+if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
+    X==3,
+     Suina is GS + 2, Aviaria is GA, Bronquite is B.
+
+if1(X, B, GA, GS, Bronquite, Aviaria, Suina):-
+    X==4,
+    Bronquite is B + 1, Aviaria is GA, Suina is GS.
+
+if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
+    X==0,
+    Sinusite is S,
+         Rinite is R,
+         Gripe is G,
+         Faringite is F,
+         Aviaria is GA,
+         Suina is GS.
+
+
+if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
+    X==1,
+    Sinusite is S + 1,
+         Rinite is R,
+         Gripe is G,
+         Faringite is F,
+         Aviaria is GA,
+         Suina is GS.
+if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
+    X==2,
+    Rinite is R + 1,
+         Gripe is G + 1,
+         Aviaria is GA + 1,
+         Suina is GS + 1,
+         Faringite is F,
+         Sinusite is S.
+
+if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
+    X==3,
+    Sinusite is S + 1,
+         Faringite is F + 1,
+         Aviaria is GA + 1,
+         Suina is GS,
+         Rinite is R,
+         Gripe is G.
+
+if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
+    X==4,
+    Sinusite is S + 2,
+          Rinite is R,
+         Gripe is G,
+         Faringite is F,
+         Aviaria is GA,
+         Suina is GS.
+
+if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
+    X==5,
+     Faringite is F + 1,
+         Rinite is R,
+         Gripe is G,
+         Sinusite is S,
+         Aviaria is GA,
+         Suina is GS.
+
+
+if2(X, R, S, G, F, GA, GS, Rinite, Sinusite, Gripe, Faringite, Aviaria, Suina):-
+    X==6,
+    Aviaria is GA + 2,
+         Rinite is R,
+         Gripe is G,
+         Sinusite is S,
+         Faringite is F,
+         Suina is GS.
+
+if3(X, R, Rinite) :-
+    X==0,
+    Rinite is R.
+
+if3(X, R, Rinite) :-
+    X==1,
+    Rinite is R + 1.
+
+if4(X, R, G, B, S, Rinite, Gripe, Bronquite, Suina) :-
+    X==0,
+    Rinite is R,
+    Gripe is G,
+    Bronquite is B,
+    Suina is S.
+
+if4(X, R, G, B, S, Rinite, Gripe, Bronquite, Suina) :-
+    X==1,
+    Rinite is R+1,
+    Gripe is G+1,
+    Bronquite is B+1,
+    Suina is S+1.
+
+if5(X, R, S, Rinite, Sinusite) :-
+    X==0,
+    Rinite is R,
+    Sinusite is S.
+
+if5(X, R, S, Rinite, Sinusite) :-
+    X==1,
+    Rinite is R+1,
+    Sinusite is S+1.
+
+if6(X, A, D, T, P, GA, Asma, Dpoc, Tuberculose, Pneumonia, Aviaria) :-
+    X==0,
+    Asma is A,
+        Dpoc is D,
+        Tuberculose is T,
+        Pneumonia is P,
+        Aviaria is GA.
+
+if6(X, A, D, T, P, GA, Asma, Dpoc, Tuberculose, Pneumonia, Aviaria) :-
+    X==1,
+    Asma is A + 1,
+        Dpoc is D + 1,
+        Tuberculose is T + 1,
+        Pneumonia is P + 1,
+        Aviaria is GA + 1.
+
+
 
 
 

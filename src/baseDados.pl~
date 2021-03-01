@@ -70,6 +70,7 @@ questionario(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Faringite, Pneumo
     teste13(Tuberculose4, Tuberculose5),
     teste14(Rinite4, Rinite5),
     teste15(Sinusite3, Sinusite4),
+    write_ln('terminei o questionario'),
     Rinite is Rinite5,
     Asma is Asma3,
     Dpoc is Dpoc1,
