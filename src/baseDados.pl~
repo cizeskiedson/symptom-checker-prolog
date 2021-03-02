@@ -25,52 +25,114 @@
 %
 
 
-doenca(Rinite).
-doenca(Asma).
-doenca(Dpoc).
-doenca(Sinusite).
-doenca(Tuberculose).
-doenca(Gripe).
-doenca(Faringite).
-doenca(Pneumonia).
-doenca(Bronquite).
-doenca(Aviaria).
-doenca(Suina).
+indice([X|_], X, 0).
+indice([_|Resto], X, Indice):-
+  indice(Resto, X, Indice1),
+  Indice is Indice1+1.
 
 probabilidade(Resultado, SintomasEncontrados, SintomasTotal):-
-    Resultado is SintomasEncontrados/SintomasTotal,
+    X is SintomasEncontrados/SintomasTotal,
+    Resultado is X * 100,
+    format('Resultado = ~3f~n', [Resultado]),
     write('Resultado: '), write_ln(Resultado).
 
+pp([]):-
+    write_ln("===========================").
+
+
+pp([(X, Y)|RestoLista]):-
+    write('Doença testada: '), write(X), nl,
+    write('Probabilidade de ser: '),format('~2f~n', Y), nl,
+    nl,
+    pp(RestoLista).
+
+appendDoenca(Doenca, Probabilidade, ListaEntrada, ListaSaida):-
+  Probabilidade >= 30.0, %Se for menor que 30% nao eh tao importante pra ser colocado nas doencas possiveis
+  append(ListaEntrada, [(Doenca, Probabilidade)], ListaSaida);
+  ListaSaida = ListaEntrada.
+
+
+criaListaDoenca(Saida, ResRinite, ResAsma, ResDpoc, ResSinusite, ResTuberculose, ResGripe, ResFaringite, ResPneumonia, ResBronquite, ResAviaria, ResSuina):-
+  appendDoenca('Rinite', ResRinite, [], Saida0),
+  appendDoenca('Asma', ResAsma, Saida0, Saida1),
+  appendDoenca('Dpoc', ResDpoc, Saida1, Saida2),
+  appendDoenca('Sinusite', ResSinusite, Saida2, Saida3),
+  appendDoenca('Tuberculose', ResTuberculose, Saida3, Saida4),
+  appendDoenca('Gripe', ResGripe, Saida4, Saida5),
+  appendDoenca('Faringite', ResFaringite, Saida5, Saida6),
+  appendDoenca('Pneumonia', ResPneumonia, Saida6, Saida7),
+  appendDoenca('Bronquite', ResBronquite, Saida7, Saida8),
+  appendDoenca('Aviaria', ResAviaria, Saida8, Saida9),
+  appendDoenca('Suina', ResSuina, Saida9, Saida10),
+  Saida = Saida10.
+
+
+
 mostraDoencasPossiveis(ResRinite, ResAsma, ResDpoc, ResSinusite, ResTuberculose, ResGripe, ResFaringite, ResPneumonia, ResBronquite, ResAviaria, ResSuina) :-
-    write('teste').
+  criaListaDoenca(Saida, ResRinite, ResAsma, ResDpoc, ResSinusite, ResTuberculose, ResGripe, ResFaringite, ResPneumonia, ResBronquite, ResAviaria, ResSuina),
+  sort(2, @>=, Saida, Ordenada),
+  write(Ordenada),
+  pp(Ordenada).
 
 
-MostraTodasDoencas :-
-    write('teste').
+mostraTodasDoencas(ResRinite, ResAsma, ResDpoc, ResSinusite, ResTuberculose, ResGripe, ResFaringite, ResPneumonia, ResBronquite, ResAviaria, ResSuina) :-
+    write_ln("============================="),
+    write("Doença testada: Rinite Crônica,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResRinite]), write(" de chance."),
+    nl,
+    write("Doença testada: Asma,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResAsma]), write(" de chance."),
+    nl,
+    write("Doença testada: Dpoc,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResDpoc]), write(" de chance."),
+    nl,
+    write("Doença testada: Sinusite,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResSinusite]), write(" de chance."),
+    nl,
+    write("Doença testada: Tuberculose,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResTuberculose]), write(" de chance."),
+    nl,
+    write("Doença testada: Gripe Comum,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResGripe]), write(" de chance."),
+    nl,
+    write("Doença testada: Faringite,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResFaringite]), write(" de chance."),
+    nl,
+    write("Doença testada: Pneumonia,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResPneumonia]), write(" de chance."),
+    nl,
+    write("Doença testada: Bronquite Crônica,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResBronquite]), write(" de chance."),
+    nl,
+    write("Doença testada: Gripe Aviária,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResAviaria]), write(" de chance."),
+    nl,
+    write("Doença testada: Gripe Suína,  "),
+    write("Probabilidade de ser: "), format('~2f~n', [ResSuina]), write(" de chance."),
+    nl.
 
 
 
 questionario(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Faringite, Pneumonia, Bronquite, Aviaria, Suina) :-
     write_ln('Agora vamos iniciar um questionário de quinze perguntas, que irão nos auxiliar a entender o que está sentindo.'),
     write_ln('Por favor, tente prestar bem atenção na pergunta, e responder apenas com o que tiver certeza que está correto.'),
-    teste0(0,0,0,0,0,0,0,0,0,0, Rinite0, Asma0, Dpoc0, Sinusite0, Tuberculose0, Gripe0, Pneumonia0, Bronquite0, Aviaria0, Suina0),
-    teste1(Bronquite0, Aviaria0, Suina0, Bronquite1, Aviaria1, Suina1),
-    teste2(Rinite0, Sinusite0, Gripe0, 0, Aviaria1, Suina1, Rinite1, Sinusite1, Gripe1, Faringite0, Aviaria2, Suina2),
-    write_ln('A partir desse ponto, o questionário terá apenas perguntas de sim ou não. Caso a descrição fornecida seja claramente correspondente ao que está sentindo, digite 1. Em caso contrário, ou seja, a descrição não remete ao que está passando, digite 0.'),
-    teste3(Rinite1, Rinite2),
-    teste4(Rinite2, Gripe1, Bronquite1, Suina2, Rinite3, Gripe2, Bronquite2, Suina3),
-    teste5(Rinite3, Sinusite1, Rinite4, Sinusite2),
-    teste6(Asma0, Dpoc0, Tuberculose0, Pneumonia0, Aviaria2, Asma1, Dpoc1, Tuberculose1, Pneumonia1, Aviaria3),
-    teste7(Asma1, Bronquite2, Asma2, Bronquite3),
-    teste8(Asma2, Bronquite3, Asma3, Bronquite4),
-    teste9(Tuberculose1, Gripe2, Faringite0, Bronquite4, Aviaria3, Suina3,  Tuberculose2, Gripe3, Faringite1, Bronquite5, Aviaria4, Suina4),
-    teste10(Sinusite2, Suina4, Sinusite3, Suina5),
-    teste11(Tuberculose2, Pneumonia1, Tuberculose3, Pneumonia2),
-    teste12(Tuberculose3, Tuberculose4),
-    teste13(Tuberculose4, Tuberculose5),
-    teste14(Rinite4, Rinite5),
-    teste15(Sinusite3, Sinusite4),
-    write_ln('terminei o questionario'),
+    teste0(0,0,0,0,0,0,0,0,0,0, Rinite0, Asma0, Dpoc0, Sinusite0, Tuberculose0, Gripe0, Pneumonia0, Bronquite0, Aviaria0, Suina0), nl,
+    teste1(Bronquite0, Aviaria0, Suina0, Bronquite1, Aviaria1, Suina1),nl,
+    teste2(Rinite0, Sinusite0, Gripe0, 0, Aviaria1, Suina1, Rinite1, Sinusite1, Gripe1, Faringite0, Aviaria2, Suina2),nl,
+    write_ln('A partir desse ponto, o questionário terá apenas perguntas de sim ou não. Caso a descrição fornecida seja claramente correspondente ao que está sentindo, digite 1. Em caso contrário, ou seja, a descrição não remete ao que está passando, digite 0.'),nl,
+    teste3(Rinite1, Rinite2), nl,
+    teste4(Rinite2, Gripe1, Bronquite1, Suina2, Rinite3, Gripe2, Bronquite2, Suina3), nl,
+    teste5(Rinite3, Sinusite1, Rinite4, Sinusite2), nl,
+    teste6(Asma0, Dpoc0, Tuberculose0, Pneumonia0, Aviaria2, Asma1, Dpoc1, Tuberculose1, Pneumonia1, Aviaria3), nl,
+    teste7(Asma1, Bronquite2, Asma2, Bronquite3), nl,
+    teste8(Asma2, Bronquite3, Asma3, Bronquite4), nl,
+    teste9(Tuberculose1, Gripe2, Faringite0, Bronquite4, Aviaria3, Suina3,  Tuberculose2, Gripe3, Faringite1, Bronquite5, Aviaria4, Suina4), nl,
+    teste10(Sinusite2, Suina4, Sinusite3, Suina5), nl,
+    teste11(Tuberculose2, Pneumonia1, Tuberculose3, Pneumonia2), nl,
+    teste12(Tuberculose3, Tuberculose4), nl,
+    teste13(Tuberculose4, Tuberculose5), nl,
+    teste14(Rinite4, Rinite5), nl,
+    teste15(Sinusite3, Sinusite4), nl,
     Rinite is Rinite5,
     Asma is Asma3,
     Dpoc is Dpoc1,
@@ -81,18 +143,43 @@ questionario(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Faringite, Pneumo
     Pneumonia is Pneumonia2,
     Bronquite is Bronquite5,
     Aviaria is Aviaria4,
-    Suina is Suina5,
-    probabilidade(ResRinite, Rinite, 6),
-    probabilidade(ResAsma, Asma, 4),
-    probabilidade(ResDpoc, Dpoc, 2),
-    probabilidade(ResSinusite, Sinusite, 5),
-    probabilidade(ResTuberculose, Tuberculose, 6),
-    probabilidade(ResGripe, Gripe, 4),
-    probabilidade(ResFaringite, Faringite, 2),
-    probabilidade(ResPneumonia, Pneumonia, 3),
-    probabilidade(ResBronquite, Bronquite, 6),
-    probabilidade(ResAviaria, Aviaria, 5),
-    probabilidade(ResSuina, Suina, 6).
+    Suina is Suina5.
+
+
+
+achaDoencaIndice(X):-
+    X == 0,
+    write('Rinite').
+achaDoencaIndice(X):-
+    X == 1,
+    write('Asma').
+achaDoencaIndice(X):-
+    X == 2,
+    write('Dpoc').
+achaDoencaIndice(X):-
+    X == 3,
+    write('Sinusite').
+achaDoencaIndice(X):-
+    X == 4,
+    write('Tuberculose').
+achaDoencaIndice(X):-
+    X == 5,
+    write('Gripe').
+achaDoencaIndice(X):-
+    X == 6,
+    write('Faringite').
+achaDoencaIndice(X):-
+    X == 7,
+    write('Pneumonia').
+achaDoencaIndice(X):-
+    X == 8,
+    write('Bronquite').
+achaDoencaIndice(X):-
+    X == 9,
+    write('Aviaria').
+achaDoencaIndice(X):-
+    X == 10,
+    write('Suina').
 
 
 
