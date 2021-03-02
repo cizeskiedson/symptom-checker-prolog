@@ -118,7 +118,6 @@ if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Grip
 
 if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
        X == 1,
-       write_ln("teste1"),
        Rinite is R + 1,
        Sinusite is GS +1,
        Gripe is G + 1,
@@ -132,7 +131,6 @@ if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Grip
 
 if0(X,R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
       X == 2,
-      write_ln("teste2"),
       Asma is A + 1,
       Dpoc is D + 1,
       Pneumonia is P + 1,
@@ -146,7 +144,6 @@ if0(X,R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe
 
 if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
       X == 3,
-      write_ln("teste3"),
       Tuberculose is T + 1,
       Rinite is R,
       Asma is A,

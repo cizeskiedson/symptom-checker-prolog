@@ -1,3 +1,2 @@
-Jorge 10 true
-Vanessa 30 true
-Edson 54 true
+vanessa 10
+vanessa 30

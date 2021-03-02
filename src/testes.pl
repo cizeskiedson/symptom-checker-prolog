@@ -113,6 +113,7 @@ teste15(S, Sinusite) :-
 
 
 if0(X, R,A,D,S,T,G, P, B, GA,GS, Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Pneumonia, Bronquite, Aviaria, Suina) :-
+    X == 0,
     Rinite is R, Asma is A, Dpoc is D, Sinusite is S, Tuberculose is T, Gripe is G, Pneumonia is P, Bronquite is B, Aviaria is GA, Suina is GS.
 
 
