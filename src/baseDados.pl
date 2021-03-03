@@ -1,4 +1,4 @@
-:-include('testes.pl').
+:-include('perguntas.pl').
 :-use_module(library(plunit)).
 
 % Doenças a serem checadas pelo sistema
@@ -32,9 +32,7 @@ indice([_|Resto], X, Indice):-
 
 probabilidade(Resultado, SintomasEncontrados, SintomasTotal):-
     X is SintomasEncontrados/SintomasTotal,
-    Resultado is X * 100,
-    format('Resultado = ~3f~n', [Resultado]),
-    write('Resultado: '), write_ln(Resultado).
+    Resultado is X * 100.
 
 pp([]):-
     write_ln("===========================").

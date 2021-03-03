@@ -1,4 +1,4 @@
-:-include('testes.pl').
+:-include('perguntas.pl').
 :-use_module(library(plunit)).
 
 % Doenças a serem checadas pelo sistema
@@ -71,7 +71,9 @@ criaListaDoenca(Saida, ResRinite, ResAsma, ResDpoc, ResSinusite, ResTuberculose,
 mostraDoencasPossiveis(ResRinite, ResAsma, ResDpoc, ResSinusite, ResTuberculose, ResGripe, ResFaringite, ResPneumonia, ResBronquite, ResAviaria, ResSuina) :-
   criaListaDoenca(Saida, ResRinite, ResAsma, ResDpoc, ResSinusite, ResTuberculose, ResGripe, ResFaringite, ResPneumonia, ResBronquite, ResAviaria, ResSuina),
   sort(2, @>=, Saida, Ordenada),
-  write(Ordenada),
+  nl,
+  write_ln("============================"),
+  write_ln("Diagnóstico do paciente: "), nl,
   pp(Ordenada).
 
 
