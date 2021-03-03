@@ -2,7 +2,7 @@
 :-use_module(library(plunit)).
 
 % Doenças a serem checadas pelo sistema
-% escolhi 10 doenças respiratórias:
+% escolhi 11 doenças respiratórias:
 % rinite crônica (espirros, tosse seca, coriza, nariz entupido, dor de
 % cabeça, se for alérgica: coceira no nariz, olhos e garganta);
 % asma (falta de ar, dificuldade para respirar, tosse sem catarro,
@@ -24,11 +24,6 @@
 % articulaçoes, tosse, irritaçao nos olhos, fluxo.
 %
 
-
-indice([X|_], X, 0).
-indice([_|Resto], X, Indice):-
-  indice(Resto, X, Indice1),
-  Indice is Indice1+1.
 
 probabilidade(Resultado, SintomasEncontrados, SintomasTotal):-
     X is SintomasEncontrados/SintomasTotal,
@@ -144,42 +139,6 @@ questionario(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Faringite, Pneumo
     Bronquite is Bronquite5,
     Aviaria is Aviaria4,
     Suina is Suina5.
-
-
-
-achaDoencaIndice(X):-
-    X == 0,
-    write('Rinite').
-achaDoencaIndice(X):-
-    X == 1,
-    write('Asma').
-achaDoencaIndice(X):-
-    X == 2,
-    write('Dpoc').
-achaDoencaIndice(X):-
-    X == 3,
-    write('Sinusite').
-achaDoencaIndice(X):-
-    X == 4,
-    write('Tuberculose').
-achaDoencaIndice(X):-
-    X == 5,
-    write('Gripe').
-achaDoencaIndice(X):-
-    X == 6,
-    write('Faringite').
-achaDoencaIndice(X):-
-    X == 7,
-    write('Pneumonia').
-achaDoencaIndice(X):-
-    X == 8,
-    write('Bronquite').
-achaDoencaIndice(X):-
-    X == 9,
-    write('Aviaria').
-achaDoencaIndice(X):-
-    X == 10,
-    write('Suina').
 
 
 

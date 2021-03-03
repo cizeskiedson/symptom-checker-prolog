@@ -26,7 +26,7 @@ menuDoencas :-
 
 iniciar :-
     nl,
-    writeln("Como ja mencionado, esse teste nao e um diagnostico, mas sim apenas uma verificaçao de sintomas."),
+    writeln("Como já mencionado, esse teste não é um diagnóstico, mas sim apenas uma checagem de sintomas."),
     writeln("Para cada pergunta responda de acordo com as instruções dadas."),
     nl,
     questionario(Rinite, Asma, Dpoc, Sinusite, Tuberculose, Gripe, Faringite, Pneumonia, Bronquite, Aviaria, Suina),
