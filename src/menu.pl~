@@ -1,5 +1,5 @@
 :-include('pacientes.pl').
-:-include('main.pl').
+:-include('diagnostico.pl').
 
 :-use_module(library(plunit)).
 
@@ -7,6 +7,8 @@
 %
 
 menu :-
+    nl,
+    nl,
     write_ln("Sistema de deteção de doenças e controle de pacientes."),
     write_ln("Seja bem-vindo, digite a opção correspondente ao que precisa."),
     write_ln("=========================================================="),
@@ -22,5 +24,3 @@ navigation(Opcao) :-
        menuPacientes());
     (   Opcao == 2 -> menuDoencas());
     (   Opcao == 3 -> abort()).
-
-

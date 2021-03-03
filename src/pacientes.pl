@@ -47,8 +47,7 @@ buscaTodos(X) :-
     read_string(PtrArq, 20000, String),
     close(PtrArq),
     set_input(Teclado),
-    X = String,
-    write(X).
+    X = String.
 
 buscar :-
     write_ln('Digite o nome do paciente que quer encontrar'),
@@ -94,7 +93,6 @@ remover :-
     open('pacientes.txt', read, PtrArq),
     read_file(PtrArq, ListaArq),
     close(PtrArq),
-    write_ln(ListaArq),
     open('pacientes.txt', write, PtrArq2),
     close(PtrArq2),
     write_ln("====================================="),
@@ -140,6 +138,9 @@ buscaAtualizar(Nome, [Paciente|ListaResto]):-
     buscaAtualizar(Nome, ListaResto).
 
 menuPacientes :-
+    nl,
+    nl,
+    write_ln("=============================================="),
     write_ln("Bem vindo ao menu de controle de pacientes."),
     write_ln("Digite a opção correspondente ao que precisa."),
     write_ln("---------------------------------------------"),
@@ -160,6 +161,8 @@ navPacientes(Opcao):-
     (   Opcao == 4 -> remover());
     (   Opcao == 5 -> buscaTodos());
     (   Opcao == 6 -> abort()).
+
+%Le arquivo e retorna lista com as linhas.
 
 read_file(Stream, []) :-
     at_end_of_stream(Stream).

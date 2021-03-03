@@ -1,2 +1,1 @@
-Alan 25
-Edson 20
+edson 30
