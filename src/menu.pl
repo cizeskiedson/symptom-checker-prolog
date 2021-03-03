@@ -22,5 +22,3 @@ navigation(Opcao) :-
        menuPacientes());
     (   Opcao == 2 -> menuDoencas());
     (   Opcao == 3 -> abort()).
-
-

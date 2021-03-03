@@ -47,10 +47,12 @@ buscaTodos(X) :-
     read_string(PtrArq, 20000, String),
     close(PtrArq),
     set_input(Teclado),
-    X = String.
+    X = String,
+    write(X).
 
 buscar :-
     write_ln('Digite o nome do paciente que quer encontrar'),
+    get_char(_),
     read_string(user_input, "\n", "\t ", _, NomeBusca),
     write('Buscando paciente... '), write_ln(NomeBusca),
     open('pacientes.txt', read, PtrArq),
@@ -64,19 +66,17 @@ buscar :-
     menuPacientes().
 
 buscaProx(_, []) :-
-    write('Paciente não encontrado no banco de dados, por favor tente novamente.').
+    write_ln('Paciente não encontrado no banco de dados, por favor tente novamente.'), nl.
 
 buscaProx(Nome, [Paciente|ListaResto]) :-
-    split_string(Paciente, " ", "", [NomePaciente, IdadePaciente, StatusPaciente]),
+    split_string(Paciente, " ", "", [NomePaciente, IdadePaciente]),
     Nome == NomePaciente -> write_ln('Paciente encontrado com sucesso'),
-    X is [NomePaciente, IdadePaciente, StatusPaciente],
     write('Nome do Paciente: '), write(NomePaciente), nl,
-    write('Idade do Paciente: '), write(IdadePaciente), nl,
-    write('Status do Paciente: '), write(StatusPaciente), nl, !, true;
-    buscaProx(Nome, ListaResto, X).
+    write('Idade do Paciente: '), write_ln(IdadePaciente), nl, !, true;
+    buscaProx(Nome, ListaResto).
 
 
-buscaRemover(_, []).
+buscaRemover(_, []) :- write_ln('Paciente removido com sucesso.').
 
 buscaRemover(Nome, [Paciente|ListaResto]) :-
     split_string(Paciente, " ", "", [NomePaciente, _]),
@@ -87,23 +87,57 @@ buscaRemover(Nome, [Paciente|ListaResto]) :-
     split_string(Paciente, " ", "", [NomePaciente, IdadePaciente]),
     Nome \== NomePaciente,
     adicionar(NomePaciente, IdadePaciente),
+    write_ln(NomePaciente),
     buscaRemover(Nome, ListaResto).
 
 remover :-
-    buscaTodos(Arquivo),
-    split_string(Arquivo, "\n", "", ListaArq),
-    open('pacientes.txt', write, PtrArq),
+    open('pacientes.txt', read, PtrArq),
+    read_file(PtrArq, ListaArq),
     close(PtrArq),
+    write_ln(ListaArq),
+    open('pacientes.txt', write, PtrArq2),
+    close(PtrArq2),
     write_ln("====================================="),
     write_ln('Digite o nome do paciente que quer remover'),
+    get_char(_),
     read_string(user_input, "\n", "\t ", _, NomeBusca),
+    write_ln(ListaArq),
     buscaRemover(NomeBusca, ListaArq),
     menuPacientes().
 
 atualizar:-
-    write('test'),
+    open('pacientes.txt', read, PtrArq),
+    read_file(PtrArq, ListaArq),
+    close(PtrArq),
+    write_ln(ListaArq),
+    open('pacientes.txt', write, PtrArq2),
+    close(PtrArq2),
+    write_ln("==============================="),
+    write_ln("Digite o nome do paciente que deseja atualizar dados."),
+    get_char(_),
+    read_string(user_input, "\n", "\t ", _, NomeBusca),
+    buscaAtualizar(NomeBusca, ListaArq),
     menuPacientes().
 
+buscaAtualizar(_, []):-
+    write_ln("Dados atualizados com sucesso!").
+
+buscaAtualizar(Nome, [Paciente|ListaResto]):-
+    split_string(Paciente, " ", "", [NomePaciente, IdadePaciente]),
+    Nome \== NomePaciente,
+    adicionar(NomePaciente, IdadePaciente),
+    buscaAtualizar(Nome, ListaResto).
+
+buscaAtualizar(Nome, [Paciente|ListaResto]):-
+    split_string(Paciente, " ", "", [NomePaciente, _]),
+    Nome == NomePaciente,
+    write_ln("Informe os novos campos."),
+    write_ln("Nome: "),
+    read_string(user_input, "\n", "\t ", _, NomeNovo),
+    write_ln("Idade: "),
+    read_string(user_input, "\n", "\t ", _, IdadeNovo),
+    adicionar(NomeNovo, IdadeNovo),
+    buscaAtualizar(Nome, ListaResto).
 
 menuPacientes :-
     write_ln("Bem vindo ao menu de controle de pacientes."),
@@ -127,3 +161,10 @@ navPacientes(Opcao):-
     (   Opcao == 5 -> buscaTodos());
     (   Opcao == 6 -> abort()).
 
+read_file(Stream, []) :-
+    at_end_of_stream(Stream).
+
+read_file(Stream, [Line | L]) :-
+    \+ at_end_of_stream(Stream),
+    read_string(Stream, "\n", "\r\t ", _, Line),
+    read_file(Stream, L).
